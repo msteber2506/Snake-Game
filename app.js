@@ -1,23 +1,19 @@
 
-
 const canvas = document.querySelector("#mainWindow");
 
 class Snake{
-    segmentCount;
     xPos;
     yPos;
     size;
-    constructor(segment,x,y,size){
-        this.segmentCount = segment;
+    constructor(x,y,size){
         this.xPos = x;
         this.yPos = y;
         this.size = size;
     }
     draw(ctx){
-        for(let i = 0; i<this.segmentCount; i++){
-            ctx.fillRect(this.xPos+i*snake.size,this.yPos,this.size,this.size);
+            ctx.fillRect(this.xPos+snake.size,this.yPos,this.size,this.size);
         }
-    }
+    
 }
 
 class Food{
@@ -35,9 +31,11 @@ class Food{
     }
 }
 
+let snakes = [];
 
+let snake = new Snake(0,0,20)
 
-let snake = new Snake(3,0,0,20)
+snakes.push(snake);
 
 canvas.width = 1500;
 
@@ -113,7 +111,7 @@ window.addEventListener('keydown',function(e){
 function gameLoop(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     snake.draw(ctx);
-    if(direction==='right'){
+    if(direction ==='right'){
         moveRight(speed)
     }
     else if(direction==='left'){
